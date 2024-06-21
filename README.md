@@ -1,18 +1,20 @@
+# this file will be modified later in proper structure
+
 # Initial micro service architecture for SuperMan
 
 ```
 /SuperMan
 |-- /services
-| |-- /service-a
+| |-- /user_service
 | | |-- /src
 | | | |-- /controllers
 | | | |-- /models
 | | | |-- /services
 | | | |-- /routes
 | | | |-- /grpc
-| | | | |-- service-a.proto
-| | | | |-- service-a_grpc_pb.ts
-| | | | |-- service-a_pb.ts
+| | | | |-- user_service.proto
+| | | | |-- user_service_grpc_pb.ts
+| | | | |-- user_service_pb.ts
 | | | |-- index.ts
 | | |-- /config
 | | | |-- database.ts
@@ -26,16 +28,16 @@
 | | |-- package.json
 | | |-- README.md
 | |
-| |-- /service-b
+| |-- /auth_service
 | | |-- /src
 | | | |-- /controllers
 | | | |-- /models
 | | | |-- /services
 | | | |-- /routes
 | | | |-- /grpc
-| | | | |-- service-b.proto
-| | | | |-- service-b_grpc_pb.ts
-| | | | |-- service-b_pb.ts
+| | | | |-- auth_service.proto
+| | | | |-- auth_service_grpc_pb.ts
+| | | | |-- auth_service_pb.ts
 | | | |-- index.ts
 | | |-- /config
 | | | |-- database.ts
@@ -85,6 +87,8 @@
 | |-- /tests
 | | |-- /unit
 | | |-- /integration
+| |-- /proto
+| | |-- service.proto
 | |-- Dockerfile
 | |-- package.json
 | |-- README.md
@@ -113,4 +117,11 @@
 |-- docker-compose.yml
 |-- README.md
 
+```
+
+# coding convention for js
+
+```
+# function name - camel case
+# class name - pascal case
 ```

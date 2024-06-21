@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+service GlobalService{
+  rpc MethodName(RequestType) returns (ResponseType);
+}
+
+message RequestType {
+  // Define your request message fields here
+}
+
+message ResponseType {
+  // Define your response message fields here
+}
