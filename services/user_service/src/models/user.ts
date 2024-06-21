@@ -55,4 +55,6 @@ User.init(
     }
 );
 
+User.sync({}); // have to try User.sync({ alter: true })
+
 export default User;
