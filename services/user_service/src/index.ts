@@ -7,7 +7,7 @@ const app = express();
 const port = 3000;
 
 app.use(bodyParser.json());
-app.use("api/", userRoutes); // this is an instance of userRoutes I guess
+app.use("/api", userRoutes); // this is an instance of userRoutes I guess
 
 db.sequelize.sync().then(() => {
     app.listen(port, () => {
