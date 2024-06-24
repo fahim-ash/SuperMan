@@ -4,7 +4,7 @@ import { jwtConfig } from "../../config/jwtConfig";
 import AuthService from "../services/authService";
 
 class AuthController {
-    public async login(req: Request, res: Response): Promise<Response> {
+    public async loginUser(req: Request, res: Response): Promise<Response> {
         try {
             const { email, password } = req.body;
             const user = await AuthService.validateUser(email, password);
@@ -23,3 +23,5 @@ class AuthController {
         }
     }
 }
+
+export default new AuthController();

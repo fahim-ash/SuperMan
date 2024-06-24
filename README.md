@@ -1,6 +1,6 @@
-# this file will be modified later in proper structure
+#### this file will be modified later in proper structure
 
-# Initial micro service architecture for SuperMan
+## Initial micro service architecture for SuperMan
 
 ```
 /SuperMan
@@ -119,9 +119,42 @@
 
 ```
 
-# coding convention for js
+#### coding convention for js
 
 ```
 # function name - camel case
 # class name - pascal case
+```
+
+### jwt implementation
+
+```
+1. auth_service will generate the token first time
+2. the common gateway will import the jwt from auth_service,
+    check it and set it with the req and send to other services.
+3. each service will have the secret key that was used to encrypt.
+4. authentication and authorization will be handled from each service.
+
+```
+
+### list of port for services
+
+```
+1. user_service = 3000
+2. auth_service = 3001
+3. gateway = 3002
+
+```
+
+### chaotic sprint goals (c-complete, inc: idk when it will be done)
+
+```
+* create user_service - c
+* connect postgres with user_service - c
+* create auth_service - c
+* create gateway - c
+* jwt structure implement - c
+* connect services through grpc - inc
+* implement intial frontend for testing jwt - inc
+
 ```
