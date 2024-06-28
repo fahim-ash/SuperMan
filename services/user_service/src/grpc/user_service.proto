@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package test_foo;
+
+service FooService {
+    rpc GetFoo(GetFooRequest) returns (GetFooResponse);
+}
+
+message GetFooRequest {
+    string msg = 1;
+}
+
+message GetFooResponse {
+    Foo data = 1;
+}
+
+message Foo {
+    string comment = 1;
+}
