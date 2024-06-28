@@ -156,5 +156,5 @@
 * jwt structure implement - c
 * connect services through grpc - inc
 * implement intial frontend for testing jwt - inc
-
+* create serice registry and service discovery - inc
 ```
