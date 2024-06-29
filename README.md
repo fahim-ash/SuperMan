@@ -132,8 +132,8 @@
 1. auth_service will generate the token first time
 2. the common gateway will import the jwt from auth_service,
     and if the token is legit then pass the req to other services .
-3. each service will have the secret key that was used to encrypt.
-4. authentication and authorization will be handled from each service.
+3. plan changed: api gaetway will check for the authenticated user.
+4. for the time being other servies won't talk to auth_service.
 
 ```
 
