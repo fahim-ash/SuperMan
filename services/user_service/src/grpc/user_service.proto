@@ -1,19 +1,23 @@
 syntax = "proto3";
 
-package test_foo;
+package user;
 
-service FooService {
-    rpc GetFoo(GetFooRequest) returns (GetFooResponse);
+service UserService {
+    rpc ValidateUser(GetValidatedUserRequest) returns (GetValidatedUserResponse);
 }
 
-message GetFooRequest {
-    string msg = 1;
+message GetValidatedUserRequest {
+    string email= 1;
+    string password = 1;
 }
 
-message GetFooResponse {
-    Foo data = 1;
+message GetValidatedUserResponse {
+    User user = 1;
 }
 
-message Foo {
-    string comment = 1;
+message User {
+    int32 id = 1;
+    string name = 2;
+    string email = 3;
+    string password = 4;
 }
