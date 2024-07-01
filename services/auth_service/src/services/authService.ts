@@ -1,18 +1,38 @@
-import bcrypt from "bcrypt";
-import User from "../../../user_service/src/models/user"; // this will be imported from grpc
+import bcrypt from 'bcrypt';
+import { promisify } from 'util';
+import userServiceClient from '../config/grpc-client';
+import { GetValidatedUserRequest, GetValidatedUserResponse } from '../grpc/user_service_pb';
 
 class AuthService {
-    public async validateUser(email: string, password: string) {
-        const user = await User.findOne({ where: { email } });
-        if (!user) {
-            throw new Error("User not found");
-        }
+    private checkUser = promisify<GetValidatedUserRequest, GetValidatedUserResponse>(
+        userServiceClient.validateUser,
+    ).bind(userServiceClient);
 
-        const isPasswordValid = await bcrypt.compare(password, user.password);
-        if (!isPasswordValid) {
-            throw new Error("Invalid password");
+    public async validateUser(email: string, password: string) {
+        const request = new GetValidatedUserRequest();
+        request.setEmail(email);
+
+        try {
+            const response: any = await this.checkUser(request);
+            const user = response.getUser();
+
+            if (!user) {
+                throw new Error('User not found');
+            }
+
+            const isPasswordValid = await bcrypt.compare(password, user.getPassword());
+            if (!isPasswordValid) {
+                throw new Error('Invalid password');
+            }
+
+            return {
+                id: user.getId(),
+                name: user.getName(),
+                email: user.getEmail(),
+            };
+        } catch (error) {
+            throw new Error(error.message);
         }
-        return user;
     }
 }
 

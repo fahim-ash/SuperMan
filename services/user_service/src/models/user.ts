@@ -48,11 +48,11 @@ User.init(
             beforeUpdate: (user, options) => {
                 user.updatedAt = new Date();
             },
-            beforeSave: (user, optons) => {
+            beforeSave: (user, options) => {
                 console.log(user.name, user.createdAt, user.updatedAt); // check any data here
             },
         },
-    }
+    },
 );
 
 // User.sync({}); // have to try User.sync({ alter: true })
