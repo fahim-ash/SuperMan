@@ -18,7 +18,7 @@ import { UserServiceService, UserServiceImpl } from './grpc/user_service_impl';
 
 const server = new grpc.Server();
 // addService(service: ServiceDefinition, implementation: UntypedServiceImplementation): void;
-server.addService(UserServiceService, new UserServiceImpl());
+server.addService(UserServiceService as any, new UserServiceImpl());
 
 const port = 50051;
 server.bind(`0.0.0.0:${port}`, grpc.ServerCredentials.createInsecure());

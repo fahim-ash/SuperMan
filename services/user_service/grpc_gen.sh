@@ -1,5 +1,5 @@
 #!/bin/bash
-PROTO_DIR="./proto"  # Directory where your .proto file is located
+PROTO_DIR="./src/grpc"  # Directory where your .proto file is located
 OUT_DIR="./src/grpc"  # Directory where you want to output generated files
 
 # Generate gRPC code
