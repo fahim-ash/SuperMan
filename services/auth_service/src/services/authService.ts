@@ -1,28 +1,30 @@
-import bcrypt from 'bcrypt';
-import { promisify } from 'util';
-import userServiceClient from '../config/grpc-client';
-import { GetValidatedUserRequest, GetValidatedUserResponse } from '../grpc/user_service_pb';
+import bcrypt from "bcrypt";
+import { promisify } from "util";
+import * as grpc from "@grpc/grpc-js";
+import { UserServiceClient } from "../grpc/user_service/user_service_grpc_pb";
+import { GetValidatedUserRequest, GetValidatedUserResponse } from "../grpc/user_service/user_service_pb";
 
 class AuthService {
+    private client = new UserServiceClient("localhost:50051", grpc.credentials.createInsecure());
     private checkUser = promisify<GetValidatedUserRequest, GetValidatedUserResponse>(
-        userServiceClient.validateUser,
-    ).bind(userServiceClient);
+        this.client.validateUser.bind(this.client),
+    );
 
-    public async validateUser(email: string, password: string) {
+    async validateUser(email: string, password: string) {
         const request = new GetValidatedUserRequest();
         request.setEmail(email);
 
         try {
-            const response: any = await this.checkUser(request);
+            const response: GetValidatedUserResponse = await this.checkUser(request);
             const user = response.getUser();
 
             if (!user) {
-                throw new Error('User not found');
+                throw new Error("User not found");
             }
 
             const isPasswordValid = await bcrypt.compare(password, user.getPassword());
             if (!isPasswordValid) {
-                throw new Error('Invalid password');
+                throw new Error("Invalid password");
             }
 
             return {
@@ -31,7 +33,8 @@ class AuthService {
                 email: user.getEmail(),
             };
         } catch (error) {
-            throw new Error(error.message);
+            console.error("Error validating user:", error);
+            throw new Error("Authentication failed");
         }
     }
 }

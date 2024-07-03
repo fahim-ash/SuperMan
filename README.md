@@ -54,4 +54,9 @@ https://fahim-ash.github.io/SuperMan_Project_Structure/
 * implement intial frontend for testing jwt - inc
 * create serice registry and service discovery - inc
 * have to think of a better way to use shared gprc(maybe a git repo) - inc
+* need a better way to handle all the urls and ports, it's getting out of hand - inc
+* user service and auth service will be communicate with rest api instead of grpc,
+    other wise we have to implement both rest and grpc on the user service,
+    other services will communicate with grpc, no problem
+
 ```

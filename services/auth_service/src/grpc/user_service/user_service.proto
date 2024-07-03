@@ -8,7 +8,7 @@ service UserService {
 
 message GetValidatedUserRequest {
     string email= 1;
-    string password = 1;
+    string password = 2;
 }
 
 message GetValidatedUserResponse {

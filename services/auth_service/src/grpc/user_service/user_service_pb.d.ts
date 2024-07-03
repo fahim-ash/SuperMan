@@ -1,5 +1,5 @@
 // package: user
-// file: user_service.proto
+// file: src/grpc/user_service.proto
 
 /* tslint:disable */
 /* eslint-disable */

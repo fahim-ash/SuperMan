@@ -4,14 +4,18 @@
 /* tslint:disable */
 /* eslint-disable */
 
-import * as grpc from "grpc";
+import * as grpc from "@grpc/grpc-js";
 import * as src_grpc_user_service_pb from "../../src/grpc/user_service_pb";
 
 interface IUserServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
     validateUser: IUserServiceService_IValidateUser;
 }
 
-interface IUserServiceService_IValidateUser extends grpc.MethodDefinition<src_grpc_user_service_pb.GetValidatedUserRequest, src_grpc_user_service_pb.GetValidatedUserResponse> {
+interface IUserServiceService_IValidateUser
+    extends grpc.MethodDefinition<
+        src_grpc_user_service_pb.GetValidatedUserRequest,
+        src_grpc_user_service_pb.GetValidatedUserResponse
+    > {
     path: "/user.UserService/ValidateUser";
     requestStream: false;
     responseStream: false;
